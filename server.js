@@ -258,14 +258,11 @@ app.use((req, res) => {
 // ── Global error handler ──────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
-  res.status(500).json({ error: "Internal server error", code: "SERVER_ERROR" });
+  res.status(500).json({
+    error: "Internal server error",
+    code: "SERVER_ERROR"
+  });
 });
 
-// ── Start ─────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`\n🛡️  MailGuard AI Backend v4 running on port ${PORT}`);
-  console.log(`   Groq API key: ✅ configured`);
-  console.log(`   Rate limit: ${process.env.RATE_LIMIT_MAX || 20} requests / 15 min per IP`);
-  console.log(`   Daily limit: ${DAILY_LIMIT} analyses per IP`);
-  console.log(`   Health check: http://localhost:${PORT}/\n`);
-});
+// Export for Vercel
+module.exports = app;
