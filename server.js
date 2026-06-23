@@ -25,7 +25,7 @@ if (!GROQ_API_KEY || GROQ_API_KEY.includes("PASTE_YOUR")) {
 // ── In-memory daily quota tracker (resets at midnight) ────────
 // In production, swap for Redis. Fine for small/medium scale.
 const dailyUsage = new Map(); // IP -> { count, date }
-const DAILY_LIMIT = parseInt(process.env.DAILY_LIMIT_PER_IP) || 50;
+const DAILY_LIMIT = parseInt(process.env.DAILY_LIMIT_PER_IP) || 15;
 
 function getDailyCount(ip) {
   const today = new Date().toDateString();
